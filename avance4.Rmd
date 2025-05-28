@@ -1,0 +1,50 @@
+---
+title: "Avance 4 - Análisis temporal - Avance 4"
+output: html_document
+---
+
+# Avance 4
+## Introducción
+
+Continuando con el análisis de la variable `ventas` en la base *Online Retail*, en esta fase se implementa la metodología Holt-Winters para modelar los patrones de la serie temporal, considerando su estacionalidad y tendencia observadas.
+
+## Justificación del modelo
+
+Como se evidenció en el avance anterior, la serie presenta comportamiento estacional semanal y una tendencia positiva. En este tipo de datos, el uso de métodos de suavizamiento simples resulta insuficiente. Por ello, se emplea el **método Holt-Winters**, también conocido como suavizamiento exponencial triple, que permite modelar simultáneamente:
+
+
+- El nivel promedio (ℓₜ)
+- La tendencia (bₜ)
+- La estacionalidad (sₜ)
+
+## Implementación en R
+
+```{r holt-winters, message=FALSE, warning=FALSE}
+library(forecast)
+library(ggplot2)
+
+# Aplicación del modelo Holt-Winters con estacionalidad aditiva
+modelo_hw <- HoltWinters(ventas_ts, seasonal = "additive")
+
+# Pronóstico a 14 días usando predict()
+pronostico <- predict(modelo_hw, n.ahead = 14)
+
+# Visualización del ajuste y el pronóstico
+plot(modelo_hw, forecast.col = "blue")
+lines(pronostico, col = "red")
+```
+
+## Análisis de Resultados
+El modelo refleja adecuadamente los ciclos semanales presentes en los datos. Se puede observar cómo se mantienen los patrones de la serie original en el pronóstico. Para evaluar la calidad del modelo se recomienda calcular métricas como MAPE o RMSE (no incluidas aquí por la limitación del método).
+
+
+## Reflexión
+
+El método de Holt-Winters sigue siendo vigente en contextos donde los datos presentan estacionalidad, incluso en la era de la inteligencia artificial. Su interpretación clara y su implementación directa lo convierten en una herramienta útil para líneas base y modelos operativos. En sectores como retail, energía o turismo, donde las variaciones temporales son predecibles, esta metodología es especialmente relevante.
+
+
+## Fuentes
+
+- Analytics Vidhya (2021). *Holt Winter’s Method for Time Series Analysis*. https://www.analyticsvidhya.com/blog/2021/08/holt-winters-method-for-time-series-analysis/
+- Documentación del paquete `forecast` en R.
+- Material del curso: Módulo 2 – Modelización.

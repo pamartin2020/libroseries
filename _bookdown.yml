@@ -1,0 +1,10 @@
+book_filename: "book-analisis-de-series"
+output_dir: "docs"
+rmd_files: [
+  "index.Rmd",
+  "avance3.Rmd",
+  "avance4.Rmd",
+  "avance5.Rmd",
+  "avance6.Rmd",
+]
+delete_merged_file: true

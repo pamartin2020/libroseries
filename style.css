@@ -1,0 +1,86 @@
+
+/* GENERAL */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #fdfdfd;
+}
+
+/* HEADER */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: #003366;
+}
+
+.book .book-header {
+  background-color: #003366;
+  color: #ffffff;
+}
+
+.book .book-header h1 {
+  font-size: 1.4em;
+}
+
+/* SIDEBAR */
+.book .book-summary {
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.book .book-summary a {
+  color: #003366;
+  font-weight: 500;
+}
+
+.book .book-summary a:hover {
+  color: #0059b3;
+  text-decoration: underline;
+}
+
+/* CONTENT STYLING */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 900px;
+  padding: 2em;
+  line-height: 1.6;
+  font-size: 1.05em;
+}
+
+pre, code {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em;
+}
+
+/* TABLES */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid #cccccc;
+}
+
+th, td {
+  padding: 0.5em;
+  text-align: left;
+}
+
+/* FIGURES */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+/* CUSTOM FOOTER */
+.book .book-body .footer {
+  color: #888;
+  font-size: 0.8em;
+  padding: 1em 0;
+  text-align: center;
+}

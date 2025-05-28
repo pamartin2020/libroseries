@@ -1,0 +1,86 @@
+---
+title: "Avance 3 - Análisis de series de tiempo"
+output: html_document
+---
+
+## Descomposición, Estacionalidad y Estacionariedad
+
+En este avance se continúa con el análisis de la variable `ventas` en la base de datos Online Retail. Se realiza una descomposición de la serie, se evalúa su estacionalidad, se aplica la prueba de estacionariedad ADF y se implementa la diferenciación si es necesaria, justificando cada paso con base en el comportamiento observado.
+
+## Descomposición de la serie
+
+```{r descompone-la-serie, message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(zoo)
+library(lubridate)
+library(forecast)
+
+# Cargar y procesar datos
+datos <- read_excel("Online-Retail.xlsx") %>%
+  mutate(Fecha = as.Date(InvoiceDate),
+         ventas = Quantity * UnitPrice) %>%
+  group_by(Fecha) %>%
+  summarise(ventas_totales = sum(ventas, na.rm = TRUE))
+
+# Crear serie temporal diaria
+ventas_ts <- ts(datos$ventas_totales, frequency = 7) # semanal
+
+# Descomposición aditiva
+decomp <- decompose(ventas_ts)
+plot(decomp)
+```
+
+**Interpretación**:  
+
+La descomposición aditiva muestra las componentes de la serie: tendencia, estacionalidad y residuos. La tendencia refleja un crecimiento progresivo hacia finales del año, mientras que la estacionalidad muestra oscilaciones semanales propias del comportamiento comercial. Los residuos reflejan fluctuaciones no explicadas por los componentes anteriores.
+
+## Estacionariedad (Prueba ADF)
+
+```{r adf-test}
+# ADF test requiere la librería aTSA
+# install.packages("aTSA") si no está instalada
+library(aTSA)
+
+adf.test(ventas_ts)
+```
+
+**Resultado**:
+
+Si el p-valor es mayor a 0.05, se concluye que la serie **no es estacionaria**. En ese caso, se realiza una diferenciación.
+
+## Diferenciación (si es necesaria)
+
+```{r diferencia}
+ventas_diff <- diff(ventas_ts)
+plot(ventas_diff, main = "Serie diferenciada")
+
+# Nueva prueba ADF
+adf.test(ventas_diff)
+```
+
+**Justificación**:  
+
+La diferenciación se aplica para eliminar la tendencia y estabilizar la varianza, con el objetivo de obtener una serie estacionaria adecuada para modelado. Si tras diferenciar el p-valor de ADF es menor a 0.05, la serie puede considerarse estacionaria.
+
+## Transformación (opcional)
+
+```{r log-transform}
+# Transformación logarítmica
+log_ventas <- log(ventas_ts)
+plot(log_ventas, main = "Logaritmo de ventas")
+```
+
+**Observación**:  
+
+La transformación logarítmica puede ser útil si se observan grandes saltos o escalas muy distintas en la serie original. En este caso, se implementa de forma exploratoria para observar su efecto en la estabilidad de la varianza.
+
+## Conclusión
+
+Este avance permitió analizar la estructura interna de la serie temporal de ventas, destacando la presencia de tendencia creciente y estacionalidad. La prueba de estacionariedad ADF evidenció la necesidad de diferenciar la serie, y se aplicó dicha técnica junto con una transformación logarítmica exploratoria. Estos pasos preparan los datos para futuras fases de modelado y pronóstico más robustas.
+
+## Fuente de datos
+
+Los datos corresponden al conjunto "Online Retail" disponible públicamente en el repositorio de UCI Machine Learning:  
+[https://archive.ics.uci.edu/dataset/352/online+retail](https://archive.ics.uci.edu/dataset/352/online+retail)

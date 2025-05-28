@@ -1,0 +1,106 @@
+# Avance 6
+
+## Introducción
+
+En este avance se aplica el modelo **Facebook Prophet** como una estrategia para modelar la serie de tiempo trabajada en entregas anteriores. Este algoritmo es especialmente útil cuando se desea capturar patrones estacionales, tendencias no lineales y realizar predicciones con intervalos de confianza. Prophet también permite incorporar efectos de días festivos o cambios estructurales.
+
+## Preparación de los datos
+## Cargar librerías
+```{r dplyr-setup, message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(lubridate)
+library(forecast)
+library(prophet)
+library(ggplot2)
+library(Metrics)
+library(tidyr)
+```
+## Cargar datos
+```{r leemos-datos, message=FALSE, warning=FALSE}
+datos <- read_excel("Online-Retail.xlsx")
+```
+## Preparar datos diarios de ventas
+```{r vtas-diar, message=FALSE, warning=FALSE}
+ventas_diarias <- datos %>%
+  mutate(Fecha = as.Date(InvoiceDate)) %>%
+  filter(!is.na(Quantity), !is.na(UnitPrice)) %>%
+  mutate(Total = Quantity * UnitPrice) %>%
+  group_by(Fecha) %>%
+  summarise(Ventas = sum(Total, na.rm = TRUE), .groups = "drop")
+```
+
+## Asegurar continuidad temporal
+```{r serie-vtasdiarias, message=FALSE, warning=FALSE}
+serie <- ventas_diarias %>%
+  complete(Fecha = seq.Date(min(Fecha), max(Fecha), by = "day"),
+           fill = list(Ventas = 0))
+```
+
+## Separar en entrenamiento y prueba  # === ARIMA ===
+```{r separamosentreprueba, message=FALSE, warning=FALSE}
+train <- serie[1:(nrow(serie) - 30), ]
+test <- serie[(nrow(serie) - 29):nrow(serie), ]
+modelo_arima <- auto.arima(train$Ventas)
+forecast_arima <- forecast::forecast(modelo_arima, h = 30)
+pred_arima <- as.numeric(forecast_arima$mean)
+print(class(modelo_arima))
+```
+
+## === ETS ===
+```{r ets-setup, message=FALSE, warning=FALSE}
+modelo_ets <- ets(train$Ventas)
+forecast_ets <- forecast::forecast(modelo_ets, h = 30)
+pred_ets <- as.numeric(forecast_ets$mean)
+```
+
+## === Prophet ===
+```{r elpropheta, message=FALSE, warning=FALSE}
+df_prophet <- train %>%
+  rename(ds = Fecha, y = Ventas)
+
+modelo_prophet <- prophet(df_prophet, daily.seasonality = TRUE)
+future <- make_future_dataframe(modelo_prophet, periods = 30)
+forecast_prophet <- predict(modelo_prophet, future)
+pred_prophet <- tail(forecast_prophet$yhat, 30)
+```
+## === Comparación de métricas ===
+
+```{r comparamos, message=FALSE, warning=FALSE}
+y_real <- test$Ventas
+
+resultados <- data.frame(
+  Modelo = c("ARIMA", "ETS", "Prophet"),
+  ME = c(mean(y_real - pred_arima),
+         mean(y_real - pred_ets),
+         mean(y_real - pred_prophet)),
+  RMSE = c(rmse(y_real, pred_arima),
+           rmse(y_real, pred_ets),
+           rmse(y_real, pred_prophet)),
+  MAE = c(mae(y_real, pred_arima),
+          mae(y_real, pred_ets),
+          mae(y_real, pred_prophet))
+)
+
+print(resultados)
+```
+## === Gráfico comparativo ===
+```{r grafico-comparat, message=FALSE, warning=FALSE}
+
+test$Fecha <- as.Date(test$Fecha)
+
+ggplot() +
+  geom_line(data = serie, aes(x = Fecha, y = Ventas), color = "black") +
+  geom_line(data = test, aes(x = Fecha, y = pred_arima), color = "red", linetype = "dashed") +
+  geom_line(data = test, aes(x = Fecha, y = pred_ets), color = "green", linetype = "dashed") +
+  geom_line(data = test, aes(x = Fecha, y = pred_prophet), color = "blue", linetype = "dashed") +
+  labs(title = "Pronóstico de los tres modelos",
+       x = "Fecha", y = "Ventas",
+       subtitle = "ARIMA (rojo), ETS (verde), Prophet (azul)") +
+  theme_minimal()
+```
+## Conclusiones
+
+El modelo Prophet se presenta como una alternativa útil para modelar series con estacionalidad compleja, tendencia variable y presencia de outliers. No obstante, en este caso, el modelo ETS fue el que mostró mejores resultados en términos de error de predicción.
+
+Esta comparación sugiere que la elección del modelo debe considerar no solo las métricas, sino también la naturaleza de la serie, la facilidad de interpretación y los objetivos del análisis.

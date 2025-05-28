@@ -1,0 +1,77 @@
+---
+title: "Avance 5 - Análisis de series de tiempo"
+output: html_document
+---
+
+```{r tsa-setup, message=FALSE, warning=FALSE}
+library(TSA)
+library(forecast)
+library(aTSA)
+library(ggplot2)
+```
+# Avance 5 
+## Introduccion
+En este avance se realiza un análisis detallado de la serie de tiempo `airmiles`, que representa el número de millas recorridas por pasajeros aéreos en vuelos comerciales dentro de los Estados Unidos. El objetivo principal es transformar la serie para estabilizar su varianza y volverla estacionaria, condición necesaria para aplicar modelos autorregresivos como ARIMA.
+
+Para ello, se emplean transformaciones logarítmicas y diferenciación. Posteriormente, se evalúa la estacionariedad mediante la prueba de Dickey-Fuller aumentada (ADF) y se ajusta un modelo ARIMA óptimo utilizando `auto.arima`. Finalmente, se genera un pronóstico a 12 meses y se diagnostica la calidad del modelo mediante el análisis de residuos (normalidad e independencia), asegurando que el modelo sea adecuado para predicción.
+
+Este procedimiento contribuye a reforzar la comprensión y aplicación de técnicas fundamentales para el análisis de series temporales con enfoque predictivo.
+
+## Cargar y explorar los datos
+
+```{r plot-airmiles}
+data("airmiles")
+plot(airmiles, main = "Serie original de airmiles")
+```
+
+## Transformaciones y análisis preliminar
+
+## Aplicar logaritmo y diferencias
+```{r analisis-pre}
+log_air <- log(airmiles)
+diff_log_air <- diff(log_air)
+
+plot(diff_log_air, main = "Diferencias logarítmicas de airmiles", ylab = "log(airmiles)", xlab = "Año")
+```
+
+## Prueba de estacionariedad
+
+```{r prueba-esta}
+adf.test(diff_log_air)
+```
+
+## Ajuste del modelo ARIMA
+
+```{r modelo-arima}
+modelo <- auto.arima(diff_log_air)
+summary(modelo)
+```
+
+## Pronóstico
+
+```{r pronostico-arima}
+# Asegurarse de usar la función forecast correcta
+pronostico <- forecast::forecast(modelo, h = 12)
+
+# Graficar el pronóstico usando autoplot del paquete forecast
+forecast::autoplot(pronostico) +
+  ggtitle("Pronóstico a 12 meses - Modelo ARIMA") +
+  ylab("log(Pasajeros)") +
+  xlab("Año")
+```
+
+## Diagnóstico de residuos
+
+```{r shap-residuales}
+residuales <- modelo$residuals
+
+# Prueba de normalidad
+shapiro.test(residuales)
+
+# Q-Q plot
+qqnorm(residuales)
+qqline(residuales)
+
+# Prueba de independencia (Ljung-Box)
+Box.test(residuales, type = "Ljung-Box")
+```

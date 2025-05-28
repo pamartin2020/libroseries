@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Avance 5 | Bookdown Online Retail</title>
+  <meta name="description" content="4 Avance 5 | Bookdown Online Retail" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Avance 5 | Bookdown Online Retail" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Avance 5 | Bookdown Online Retail" />
+  
+  
+  
+
+<meta name="author" content="Paulo Andres Martinez - Juan Camilo Perdomo - Christophe Eklouh Molinier" />
+
+
+<meta name="date" content="2025-05-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="avance-4.html"/>
+<link rel="next" href="avance-6.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#introducci%C3%B3n"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1.1</b> Procesamiento de datos</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#ventas-por-d%C3%ADa"><i class="fa fa-check"></i><b>1.2</b> Ventas por Día</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#promedio-m%C3%B3vil-7-d%C3%ADas"><i class="fa fa-check"></i><b>1.3</b> Promedio móvil (7 días)</a></li>
+<li class="chapter" data-level="1.4" data-path="introducción.html"><a href="introducción.html#ventas-por-hora"><i class="fa fa-check"></i><b>1.4</b> Ventas por hora</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#autocorrelaci%C3%B3n-acf"><i class="fa fa-check"></i><b>1.5</b> Autocorrelación (ACF)</a></li>
+<li class="chapter" data-level="1.6" data-path="introducción.html"><a href="introducción.html#estacionalidad"><i class="fa fa-check"></i><b>1.6</b> Estacionalidad</a></li>
+<li class="chapter" data-level="1.7" data-path="introducción.html"><a href="introducción.html#conclusiones"><i class="fa fa-check"></i><b>1.7</b> Conclusiones</a></li>
+<li class="chapter" data-level="1.8" data-path="introducción.html"><a href="introducción.html#fuente-de-datos"><i class="fa fa-check"></i><b>1.8</b> Fuente de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="avance-3.html"><a href="avance-3.html"><i class="fa fa-check"></i><b>2</b> Avance 3</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="avance-3.html"><a href="avance-3.html#introduccion"><i class="fa fa-check"></i><b>2.1</b> Introduccion</a></li>
+<li class="chapter" data-level="2.2" data-path=""><a href="#descomposici%C3%B3n-estacionalidad-y-estacionariedad"><i class="fa fa-check"></i><b>2.2</b> Descomposición, Estacionalidad y Estacionariedad</a></li>
+<li class="chapter" data-level="2.3" data-path=""><a href="#descomposici%C3%B3n-de-la-serie"><i class="fa fa-check"></i><b>2.3</b> Descomposición de la serie</a></li>
+<li class="chapter" data-level="2.4" data-path="avance-3.html"><a href="avance-3.html#estacionariedad-prueba-adf"><i class="fa fa-check"></i><b>2.4</b> Estacionariedad (Prueba ADF)</a></li>
+<li class="chapter" data-level="2.5" data-path=""><a href="#diferenciaci%C3%B3n-si-es-necesaria"><i class="fa fa-check"></i><b>2.5</b> Diferenciación (si es necesaria)</a></li>
+<li class="chapter" data-level="2.6" data-path=""><a href="#transformaci%C3%B3n-opcional"><i class="fa fa-check"></i><b>2.6</b> Transformación (opcional)</a></li>
+<li class="chapter" data-level="2.7" data-path=""><a href="#conclusi%C3%B3n"><i class="fa fa-check"></i><b>2.7</b> Conclusión</a></li>
+<li class="chapter" data-level="2.8" data-path="avance-3.html"><a href="avance-3.html#fuente-de-datos-1"><i class="fa fa-check"></i><b>2.8</b> Fuente de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avance-4.html"><a href="avance-4.html"><i class="fa fa-check"></i><b>3</b> Avance 4</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#introducci%C3%B3n-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path=""><a href="#justificaci%C3%B3n-del-modelo"><i class="fa fa-check"></i><b>3.2</b> Justificación del modelo</a></li>
+<li class="chapter" data-level="3.3" data-path=""><a href="#implementaci%C3%B3n-en-r"><i class="fa fa-check"></i><b>3.3</b> Implementación en R</a></li>
+<li class="chapter" data-level="3.4" data-path=""><a href="#an%C3%A1lisis-de-resultados"><i class="fa fa-check"></i><b>3.4</b> Análisis de Resultados</a></li>
+<li class="chapter" data-level="3.5" data-path=""><a href="#reflexi%C3%B3n"><i class="fa fa-check"></i><b>3.5</b> Reflexión</a></li>
+<li class="chapter" data-level="3.6" data-path="avance-4.html"><a href="avance-4.html#fuentes"><i class="fa fa-check"></i><b>3.6</b> Fuentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="avance-5.html"><a href="avance-5.html"><i class="fa fa-check"></i><b>4</b> Avance 5</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="avance-5.html"><a href="avance-5.html#introduccion-1"><i class="fa fa-check"></i><b>4.1</b> Introduccion</a></li>
+<li class="chapter" data-level="4.2" data-path="avance-5.html"><a href="avance-5.html#cargar-y-explorar-los-datos"><i class="fa fa-check"></i><b>4.2</b> Cargar y explorar los datos</a></li>
+<li class="chapter" data-level="4.3" data-path=""><a href="#transformaciones-y-an%C3%A1lisis-preliminar"><i class="fa fa-check"></i><b>4.3</b> Transformaciones y análisis preliminar</a></li>
+<li class="chapter" data-level="4.4" data-path="avance-5.html"><a href="avance-5.html#aplicar-logaritmo-y-diferencias"><i class="fa fa-check"></i><b>4.4</b> Aplicar logaritmo y diferencias</a></li>
+<li class="chapter" data-level="4.5" data-path="avance-5.html"><a href="avance-5.html#prueba-de-estacionariedad"><i class="fa fa-check"></i><b>4.5</b> Prueba de estacionariedad</a></li>
+<li class="chapter" data-level="4.6" data-path="avance-5.html"><a href="avance-5.html#ajuste-del-modelo-arima"><i class="fa fa-check"></i><b>4.6</b> Ajuste del modelo ARIMA</a></li>
+<li class="chapter" data-level="4.7" data-path=""><a href="#pron%C3%B3stico"><i class="fa fa-check"></i><b>4.7</b> Pronóstico</a></li>
+<li class="chapter" data-level="4.8" data-path=""><a href="#diagn%C3%B3stico-de-residuos"><i class="fa fa-check"></i><b>4.8</b> Diagnóstico de residuos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="avance-6.html"><a href="avance-6.html"><i class="fa fa-check"></i><b>5</b> Avance 6</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path=""><a href="#introducci%C3%B3n-2"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path=""><a href="#preparaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>5.2</b> Preparación de los datos</a></li>
+<li class="chapter" data-level="5.3" data-path=""><a href="#cargar-librer%C3%ADas"><i class="fa fa-check"></i><b>5.3</b> Cargar librerías</a></li>
+<li class="chapter" data-level="5.4" data-path="avance-6.html"><a href="avance-6.html#cargar-datos"><i class="fa fa-check"></i><b>5.4</b> Cargar datos</a></li>
+<li class="chapter" data-level="5.5" data-path="avance-6.html"><a href="avance-6.html#preparar-datos-diarios-de-ventas"><i class="fa fa-check"></i><b>5.5</b> Preparar datos diarios de ventas</a></li>
+<li class="chapter" data-level="5.6" data-path="avance-6.html"><a href="avance-6.html#asegurar-continuidad-temporal"><i class="fa fa-check"></i><b>5.6</b> Asegurar continuidad temporal</a></li>
+<li class="chapter" data-level="5.7" data-path="avance-6.html"><a href="avance-6.html#separar-en-entrenamiento-y-prueba-arima"><i class="fa fa-check"></i><b>5.7</b> Separar en entrenamiento y prueba # === ARIMA ===</a></li>
+<li class="chapter" data-level="5.8" data-path="avance-6.html"><a href="avance-6.html#ets"><i class="fa fa-check"></i><b>5.8</b> === ETS ===</a></li>
+<li class="chapter" data-level="5.9" data-path="avance-6.html"><a href="avance-6.html#prophet"><i class="fa fa-check"></i><b>5.9</b> === Prophet ===</a></li>
+<li class="chapter" data-level="5.10" data-path=""><a href="#comparaci%C3%B3n-de-m%C3%A9tricas"><i class="fa fa-check"></i><b>5.10</b> === Comparación de métricas ===</a></li>
+<li class="chapter" data-level="5.11" data-path=""><a href="#gr%C3%A1fico-comparativo"><i class="fa fa-check"></i><b>5.11</b> === Gráfico comparativo ===</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bookdown Online Retail</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="avance-5" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Avance 5<a href="avance-5.html#avance-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduccion-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduccion<a href="avance-5.html#introduccion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este avance se realiza un análisis detallado de la serie de tiempo <code>airmiles</code>, que representa el número de millas recorridas por pasajeros aéreos en vuelos comerciales dentro de los Estados Unidos. El objetivo principal es transformar la serie para estabilizar su varianza y volverla estacionaria, condición necesaria para aplicar modelos autorregresivos como ARIMA.</p>
+<p>Para ello, se emplean transformaciones logarítmicas y diferenciación. Posteriormente, se evalúa la estacionariedad mediante la prueba de Dickey-Fuller aumentada (ADF) y se ajusta un modelo ARIMA óptimo utilizando <code>auto.arima</code>. Finalmente, se genera un pronóstico a 12 meses y se diagnostica la calidad del modelo mediante el análisis de residuos (normalidad e independencia), asegurando que el modelo sea adecuado para predicción.</p>
+<p>Este procedimiento contribuye a reforzar la comprensión y aplicación de técnicas fundamentales para el análisis de series temporales con enfoque predictivo.</p>
+</div>
+<div id="cargar-y-explorar-los-datos" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Cargar y explorar los datos<a href="avance-5.html#cargar-y-explorar-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="avance-5.html#cb23-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;airmiles&quot;</span>)</span>
+<span id="cb23-2"><a href="avance-5.html#cb23-2" tabindex="-1"></a><span class="fu">plot</span>(airmiles, <span class="at">main =</span> <span class="st">&quot;Serie original de airmiles&quot;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/plot-airmiles-1.png" width="672" /></p>
+</div>
+<div id="transformaciones-y-análisis-preliminar" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Transformaciones y análisis preliminar<a href="#transformaciones-y-an%C3%A1lisis-preliminar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="aplicar-logaritmo-y-diferencias" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Aplicar logaritmo y diferencias<a href="avance-5.html#aplicar-logaritmo-y-diferencias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="avance-5.html#cb24-1" tabindex="-1"></a>log_air <span class="ot">&lt;-</span> <span class="fu">log</span>(airmiles)</span>
+<span id="cb24-2"><a href="avance-5.html#cb24-2" tabindex="-1"></a>diff_log_air <span class="ot">&lt;-</span> <span class="fu">diff</span>(log_air)</span>
+<span id="cb24-3"><a href="avance-5.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="avance-5.html#cb24-4" tabindex="-1"></a><span class="fu">plot</span>(diff_log_air, <span class="at">main =</span> <span class="st">&quot;Diferencias logarítmicas de airmiles&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;log(airmiles)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Año&quot;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/analisis-pre-1.png" width="672" /></p>
+</div>
+<div id="prueba-de-estacionariedad" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Prueba de estacionariedad<a href="avance-5.html#prueba-de-estacionariedad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="avance-5.html#cb25-1" tabindex="-1"></a><span class="fu">adf.test</span>(diff_log_air)</span></code></pre></div>
+<pre><code>## Augmented Dickey-Fuller Test 
+## alternative: stationary 
+##  
+## Type 1: no drift no trend 
+##      lag    ADF p.value
+## [1,]   0 -14.90    0.01
+## [2,]   1 -10.59    0.01
+## [3,]   2  -8.64    0.01
+## [4,]   3  -6.44    0.01
+## [5,]   4  -4.04    0.01
+## Type 2: with drift no trend 
+##      lag    ADF p.value
+## [1,]   0 -14.85    0.01
+## [2,]   1 -10.55    0.01
+## [3,]   2  -8.63    0.01
+## [4,]   3  -6.44    0.01
+## [5,]   4  -4.03    0.01
+## Type 3: with drift and trend 
+##      lag    ADF p.value
+## [1,]   0 -14.79  0.0100
+## [2,]   1 -10.51  0.0100
+## [3,]   2  -8.59  0.0100
+## [4,]   3  -6.41  0.0100
+## [5,]   4  -4.01  0.0116
+## ---- 
+## Note: in fact, p.value = 0.01 means p.value &lt;= 0.01</code></pre>
+</div>
+<div id="ajuste-del-modelo-arima" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Ajuste del modelo ARIMA<a href="avance-5.html#ajuste-del-modelo-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="avance-5.html#cb27-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(diff_log_air)</span>
+<span id="cb27-2"><a href="avance-5.html#cb27-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<pre><code>## Series: diff_log_air 
+## ARIMA(0,0,1)(2,1,0)[12] 
+## 
+## Coefficients:
+##           ma1     sar1     sar2
+##       -0.4704  -0.4886  -0.2300
+## s.e.   0.0945   0.0990   0.0944
+## 
+## sigma^2 = 0.003227:  log likelihood = 144.63
+## AIC=-281.27   AICc=-280.85   BIC=-270.85
+## 
+## Training set error measures:
+##                       ME       RMSE        MAE      MPE    MAPE      MASE
+## Training set 0.003333275 0.05286522 0.02688532 23.96793 79.9191 0.7100808
+##                    ACF1
+## Training set 0.01386424</code></pre>
+</div>
+<div id="pronóstico" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Pronóstico<a href="#pron%C3%B3stico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="avance-5.html#cb29-1" tabindex="-1"></a><span class="co"># Asegurarse de usar la función forecast correcta</span></span>
+<span id="cb29-2"><a href="avance-5.html#cb29-2" tabindex="-1"></a>pronostico <span class="ot">&lt;-</span> forecast<span class="sc">::</span><span class="fu">forecast</span>(modelo, <span class="at">h =</span> <span class="dv">12</span>)</span>
+<span id="cb29-3"><a href="avance-5.html#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="avance-5.html#cb29-4" tabindex="-1"></a><span class="co"># Graficar el pronóstico usando autoplot del paquete forecast</span></span>
+<span id="cb29-5"><a href="avance-5.html#cb29-5" tabindex="-1"></a>forecast<span class="sc">::</span><span class="fu">autoplot</span>(pronostico) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="avance-5.html#cb29-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Pronóstico a 12 meses - Modelo ARIMA&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="avance-5.html#cb29-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;log(Pasajeros)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="avance-5.html#cb29-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Año&quot;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/pronostico-arima-1.png" width="672" /></p>
+</div>
+<div id="diagnóstico-de-residuos" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Diagnóstico de residuos<a href="#diagn%C3%B3stico-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="avance-5.html#cb30-1" tabindex="-1"></a>residuales <span class="ot">&lt;-</span> modelo<span class="sc">$</span>residuals</span>
+<span id="cb30-2"><a href="avance-5.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="avance-5.html#cb30-3" tabindex="-1"></a><span class="co"># Prueba de normalidad</span></span>
+<span id="cb30-4"><a href="avance-5.html#cb30-4" tabindex="-1"></a><span class="fu">shapiro.test</span>(residuales)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuales
+## W = 0.64301, p-value = 4.103e-15</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="avance-5.html#cb32-1" tabindex="-1"></a><span class="co"># Q-Q plot</span></span>
+<span id="cb32-2"><a href="avance-5.html#cb32-2" tabindex="-1"></a><span class="fu">qqnorm</span>(residuales)</span>
+<span id="cb32-3"><a href="avance-5.html#cb32-3" tabindex="-1"></a><span class="fu">qqline</span>(residuales)</span></code></pre></div>
+<p><img src="index_files/figure-html/shap-residuales-1.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="avance-5.html#cb33-1" tabindex="-1"></a><span class="co"># Prueba de independencia (Ljung-Box)</span></span>
+<span id="cb33-2"><a href="avance-5.html#cb33-2" tabindex="-1"></a><span class="fu">Box.test</span>(residuales, <span class="at">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Box-Ljung test
+## 
+## data:  residuales
+## X-squared = 0.02211, df = 1, p-value = 0.8818</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="avance-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="avance-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": false,
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

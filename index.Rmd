@@ -1,0 +1,140 @@
+---
+title: "Bookdown Online Retail"
+author: "Paulo Andres Martinez - Juan Camilo Perdomo - Christophe Eklouh Molinier "
+date: "`r Sys.Date()`"
+output:
+  bookdown::gitbook:
+    css: style.css
+bibliography:
+- book.bib
+- packages.bib
+---
+
+
+# Introducción
+
+El presente documento amplía el análisis iniciado en la Unidad 1, utilizando herramientas estadísticas para estudiar la evolución de una variable clave del conjunto de datos *Online Retail*. En particular, se analiza el comportamiento temporal de las ventas totales con el objetivo de identificar patrones, tendencias y ciclos que puedan ser útiles para la toma de decisiones empresariales.
+
+A través del uso de funciones específicas en R, se aplican técnicas como el promedio móvil, la autocorrelación (rezagos) y la descomposición estacional. Estos métodos permiten descomponer la serie en componentes más interpretables y detectar la posible presencia de estructuras subyacentes como estacionalidad o cambios de tendencia.
+
+## Procesamiento de datos
+
+```{r setup, message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(zoo)
+library(lubridate)
+library(forecast)
+
+# Cargar los datos
+datos <- read_excel("Online-Retail.xlsx")
+
+# Convertir fechas y calcular ventas
+datos <- datos %>%
+  mutate(Fecha = as.Date(InvoiceDate),
+         Hora = format(as.POSIXct(InvoiceDate), "%H:%M:%S"),
+         ventas = Quantity * UnitPrice)
+```
+
+## Ventas por Día
+
+```{r ventas-dia}
+ventas_dia <- datos %>%
+  group_by(Fecha) %>%
+  summarise(ventas_totales = sum(ventas, na.rm = TRUE))
+
+ggplot(ventas_dia, aes(x = Fecha, y = ventas_totales)) +
+  geom_line() +
+  labs(title = "Ventas por día", x = "Fecha", y = "Ventas")
+```
+
+## Promedio móvil (7 días)
+
+Análisis: Ventas por día
+La serie temporal diaria muestra un comportamiento interesante:
+
+Tendencia general al alza:
+Aunque la serie presenta una alta variabilidad diaria, se puede apreciar una tendencia ascendente a lo largo del tiempo, especialmente a partir de mediados del año 2011. Esto podría indicar un crecimiento progresivo en las ventas, posiblemente relacionado con el aumento de la demanda, mayor visibilidad de la tienda, o campañas de marketing.
+
+Alta volatilidad:
+La serie muestra fluctuaciones diarias muy marcadas, lo cual es típico en el comercio electrónico donde los picos de ventas pueden estar asociados a días de promoción, lanzamientos de productos o eventos especiales.
+
+Picos significativos:
+Se observan picos agudos en septiembre, octubre y noviembre de 2011. Estos podrían estar relacionados con:
+Periodos previos a compras de fin de año.
+Black Friday u otros eventos estacionales.
+Grandes pedidos corporativos o mayoristas.
+
+Estacionalidad posible:
+Aunque no se detecta un patrón repetitivo semanal claro a simple vista, los picos y la dispersión creciente podrían sugerir cierta estacionalidad a investigar con más detalle (por ejemplo, ventas por día de la semana o por mes).
+
+```{r promedio-movil}
+ventas_dia <- ventas_dia %>%
+  mutate(prom_movil = zoo::rollmean(ventas_totales, k = 7, fill = NA))
+
+ggplot(ventas_dia, aes(x = Fecha)) +
+  geom_line(aes(y = ventas_totales), alpha = 0.5) +
+  geom_line(aes(y = prom_movil), color = "blue") +
+  labs(title = "Promedio móvil de ventas (7 días)", y = "Ventas")
+```
+
+## Ventas por hora
+
+```{r ventas-hora}
+ventas_hora <- datos %>%
+  mutate(Hora = hour(as.POSIXct(Hora, format = "%H:%M:%S"))) %>%
+  group_by(Hora) %>%
+  summarise(ventas_totales = sum(ventas, na.rm = TRUE))
+
+ggplot(ventas_hora, aes(x = Hora, y = ventas_totales)) +
+  geom_line() +
+  labs(title = "Ventas por hora del día", x = "Hora", y = "Ventas")
+```
+
+## Autocorrelación (ACF)
+
+```{r acf}
+ventas_ts <- ts(ventas_dia$ventas_totales, frequency = 7)
+acf(ventas_ts, main = "Autocorrelación de las ventas diarias")
+```
+
+## Estacionalidad
+
+```{r 2005-estacionalidad}
+decomp <- stl(na.approx(ventas_ts), s.window = "periodic")
+plot(decomp)
+```
+
+## Conclusiones
+
+El análisis realizado sobre los datos de ventas del dataset *Online Retail* permitió identificar varios patrones relevantes en la dinámica de las transacciones.
+
+El promedio móvil reveló tendencias a mediano plazo, suavizando la variabilidad diaria. La autocorrelación mostró dependencia entre días cercanos, lo que sugiere la posibilidad de usar modelos autoregresivos. Por su parte, la descomposición estacional evidenció patrones cíclicos consistentes que podrían asociarse con comportamientos de consumo en ciertos días de la semana o épocas del año.
+
+Este análisis facilita la toma de decisiones informadas en estrategias comerciales, optimización de inventario o campañas promocionales, contribuyendo así a un manejo más eficiente del negocio.
+
+## Fuente de datos
+
+Los datos utilizados corresponden al conjunto "Online Retail" disponible públicamente en el repositorio de UCI Machine Learning:  
+[https://archive.ics.uci.edu/dataset/352/online+retail](https://archive.ics.uci.edu/dataset/352/online+retail)
+
+# Avance 3
+## Introduccion
+
+En el avance anterior se analizaron las ventas por día, su promedio móvil, la variación horaria y la autocorrelación de la serie. A partir de estos hallazgos, se procede ahora con un análisis más profundo, sobre la estructura estacional, la estacionariedad de la serie y posibles transformaciones necesarias para estabilizarla.
+
+```{r child="avance3.Rmd"}
+```
+
+
+```{r child="avance4.Rmd"}
+```
+
+
+```{r child="avance5.Rmd"}
+```
+
+
+```{r child="avance6.Rmd"}
+```
